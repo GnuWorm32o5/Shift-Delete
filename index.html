@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
 </head>
 <body>
+
+<!-- Landing page -->
+<canvas id="matrix"></canvas>
+
 <header class="header">
     <a href="#" class="logo"><span>Stevan Glavaški</span></a>
 
@@ -26,9 +30,11 @@
 
     <i class="fa-solid fa-bars"></i>
 
-    <button class="visit-btn">Contact me</button>
+    <a href="mailto:stevanglavaskii@gmail.com"><button class="visit-btn"><Contact href="mailto:stevanglavaskii@gmail.com">Contact me</button></a>
     <!-- Ubaciti email u dugme -->
 </header>
+
+<!-- Bout section -->
 
 <section id="about" class="about">
     <div class="about-container">
@@ -39,14 +45,13 @@
 
                 <div class="text">
                     <h3>Hi! I'm</h3>
-                    <h1>Stevan</h1>
-                    <span>IT graduate<br> Aspiring cybersecurity analyst<br> Python programming student
+                    <h1>Stevan / Steven</h1>
+                    <span> Ethical Hacker in Training<br> IT Gradute & <br> Python Student
 </span>
                 </div>
 
                 <div class="btn-group">
-                    <div class="btn">Download CV</div>
-                    <div class="btn">Contact</div>
+                    <div class="btn" id="warning">Download CV</div>
                 </div>
                 <div class="tryhackme">
                     <iframe class="tryhackme1" src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5710620" 
@@ -65,6 +70,8 @@
             </div>
     </div>
 </section>
+
+<!-- Exp section -->
 
 <section id="experience" class="experience">
     <h2 class="section-title">Experience</h2>
@@ -104,6 +111,22 @@
         <img src="img/perfil/face2.png" alt="">
     </div>
 </section>
+
+<!-- Projects section -->
+
+<section class="projects" id="projects">
+    <h2 class="section-title">Recent Projects</h2>
+<div class="projects-grid">
+    <div class="projects-card">
+        <img src="/img/sitesimg/rymo.png" alt="" srcset="">
+        <h3>Project</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius esse autem expedita, illo temporibus quasi architecto totam, rerum natus voluptas labore eaque aut velit, harum cum corrupti id vitae aliquid?</p>
+        <div class="btn">Live Demo</div>
+        <div class="btn">Github Repo</div>
+    </div>
+</div>
+</section>
+
 
 <script src="script.js"></script>
 </body>
