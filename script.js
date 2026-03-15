@@ -1,6 +1,15 @@
 document.getElementById('warning').addEventListener('click', () => {
-    alert("You weren't seriously thinking that I'm studying cybersecurity and that I would willingly give ALL of my information for free on a public website were you? :) - Might as well been a phishing link so.. GOT YA! You just got h4cked. Just kidding, ill pretend this click never happened. Btw. your IP adress is *192.168.1.1* and your port is *443*.");
+    alert("Congratulations! You have just pressed a phishing link and I collected all of your information, thanks! .. Just kidding.. but you get the point :).");
 });
+
+// Hamburger menu toggle
+const menuIcon = document.querySelector('#menu-icon');
+const navLinks = document.querySelector('.nav-links');
+
+menuIcon.onclick () => {
+    navLinks.classList.toggle('active');
+    
+}
 
 
 

@@ -9,6 +9,8 @@
     
 }
 
+/* Background */
+
 #matrix {
     position: fixed;
     top: 0;
@@ -18,6 +20,8 @@
     z-index: -1; 
     opacity: 1; 
 }
+
+/* Header */
 
 header {
     position: fixed;
@@ -47,12 +51,14 @@ header {
 
 .logo:hover {
     transform: scale(1.1);
+    
 
 }
 
 .nav-links {
     display: flex;
     gap: 2rem;
+    font-size: 1.7rem;
 
 }
 
@@ -67,11 +73,11 @@ li a:before {
     content: '';
     width: 0;
     left: 0;
-    height: 5px;
+    height: 1px;
     top: 25px;
     border-radius: 1rem;
     transition: 0.3s ease-in-out;
-    background: linear-gradient(to right, rgb(0, 157, 255));
+    background: white;
 
 }
 
@@ -85,24 +91,26 @@ li a:hover:before {
     border-radius: 3rem;
     border: none;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 1.5rem;
     color: white;
     cursor: pointer;
     text-wrap: nowrap;
     transition: 0.3s ease-in-out;
-    background: rgb(0, 157, 255);
+    background: linear-gradient(to right, rgb(115, 0, 255), rgb(1, 131, 212));
 }
 
 .visit-btn:hover {
     transform: scale(1.03);
     color: black;
     background-color: white;
+    background: white;
 }
 
 #menu-icon {
     font-size: 2rem;
     display: none;
 }
+/* Sections */
 
 section {
     min-height: 100vh;
@@ -110,6 +118,7 @@ section {
     width: 100%;
     position: relative;
 }
+/* About */
 
 .about {
     display: flex;
@@ -131,7 +140,6 @@ section {
 }
 
 .about img {
-    /* border: 2px solid ; */
     background:transparent;
     animation: rotate-border 10s linear infinite, wavy-border 6s ease-in-out infinite;
     
@@ -151,73 +159,6 @@ section {
 }
 
 
-/* .about img {
-    width: 350px;
-    max-width: 350px;
-    border: 2px solid rgb(1, 131, 212);
-    animation: wavy-border 20s ease-in-out infinite;
-     box-shadow: 0 0 15px rgb(0, 157, 255),
-                0 0 30px rgba(0, 157, 255, 0.4);
-}
-
-  @keyframes wavy-border {
-    0% {
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    }
-
-    15% {
-        border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
-
-    }
-
-    25% {
-        border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
-    }
-
-    35% {
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-
-    }
-
-    50% {
-        border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
-    }
-
-    75% {
-        border-radius: 33% 67% 58% 42% / 63% 68% 32% 37%;
-    }
-
-    85% {
-        border-radius: 58% 42% 75% 25% / 76% 46% 54% 24%;
-    }
-      100% {
-        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-    }
-} */
-
-/* .about img {
-    width: 350px;
-    max-width: 350px;
-    border-radius: 50%;
-    padding: 4px;
-    background: linear-gradient(var(--angle), rgb(0, 157, 255), rgb(255, 0, 255));
-    animation: rotate-border 3s linear infinite;
-}
-
-@property --angle {
-    syntax: '<angle>';
-    initial-value: 0deg;
-    inherits: false;
-}
-
-@keyframes rotate-border {
-    to {
-        --angle: 360deg;
-    }
-} */
-
-/* Left this on purpose to see my thougth flow */
-
 .info-box {
     display: flex;
     flex-direction: column;
@@ -229,7 +170,6 @@ section {
     background: rgba(255, 255, 255, 0.05);  
     backdrop-filter: blur(10px);             
     -webkit-backdrop-filter: blur(10px);     
-    /* border: 2rem solid rgba(255, 255, 255, 0.05); */
     border-radius: 1rem;
     
 }
@@ -258,6 +198,12 @@ section {
 
 .tryhackme1 {
     overflow: hidden;
+        filter: grayscale(100%);
+
+}
+
+#nofilter {
+    filter: none;
 }
 
 .btn-group {
@@ -298,6 +244,8 @@ section {
     transform: scale(2);
 }
 
+/* Experience */
+
 .section-title {
     text-align: center;
     font-size: 4rem;
@@ -305,10 +253,8 @@ section {
     margin-bottom: 3rem;
     color: white;
     -webkit-text-stroke: 1px black;
-    /* background: rgba(255, 255, 255, 0.05);   */
     backdrop-filter: blur(2px);             
     -webkit-backdrop-filter: blur(2px);     
-    /* border: 2rem solid rgba(255, 255, 255, 0.05); */
     border-radius: 1rem;
 
 }
@@ -338,7 +284,7 @@ section {
 }
 
 .grid-card {
-    border: 2px solid black;
+    border: 2px solid white;
     border-radius: 3rem;
     padding: 3rem;
     display: flex;
@@ -348,6 +294,13 @@ section {
     transition: 0.2s ease-in-out;
     background-color: black;
     color: white;
+    font-size: 20px;
+     background: rgba(255, 255, 255, 0.05);  
+    backdrop-filter: blur(10px);             
+    -webkit-backdrop-filter: blur(10px);     
+    border-radius: 1rem;
+
+    
 
 }
 
@@ -355,6 +308,8 @@ section {
     transform: scale(1.02);
     background-color: white;
     color:black;
+    border: 2px solid black;
+
 }
 
 .grid-card i{
@@ -363,12 +318,14 @@ section {
 }
 
 .grid-card span {
-    font-size: 1.5rem;
+    font-size: 2rem;
     font-weight: 500;
     background: linear-gradient(to right, rgb(115, 0, 255), rgb(1, 131, 212));
     background-clip: text;
     color: transparent;
 }
+
+/* Scroll */
 
 ::-webkit-scrollbar{
     width: 5px;
@@ -384,3 +341,108 @@ section {
     border-radius: 10px;
 }
 
+/* Projects */
+
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.projects-card {
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 1.5rem;
+    border: 2px solid white;
+    border-radius: 1rem;
+    transition: 0.3 ease-in-out;
+    color: white;
+    background: rgba(255, 255, 255, 0.05);  
+    backdrop-filter: blur(10px);             
+    -webkit-backdrop-filter: blur(10px);     
+    border-radius: 1rem;
+}
+
+
+
+.projects-card:hover {
+    background-color: white;
+    color: black;
+    transform: translateY(-10px)scale(1.02);
+    border: 2px solid black;
+
+}
+
+.projects-card img {
+    width: 200px;
+    height: 100px;
+    border-radius: 1rem;
+    filter: grayscale(100%);
+}
+
+.projects-card .btn {
+    border: 2px solid white;
+}
+
+.projects-card:hover .btn {
+    border: 2px solid black;
+    color: black;
+}
+
+.projects-card:hover .btn:hover {
+    border: 2px solid white;
+    background-color: black;
+    color: white;
+}
+
+.projects-card h3 {
+    font-size: 2rem;
+    font-weight: 500;
+    
+}
+
+/* Footer */
+
+footer {
+    bottom: 0;
+    left: 0;
+    height: 10rem;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+     color: white;
+    backdrop-filter: blur(2px);             
+    -webkit-backdrop-filter: blur(2px);     
+    border-radius: 5rem;
+    
+    
+
+}
+
+footer ul {
+    display: flex;
+    align-items: center;
+    gap: 3rem;
+}
+
+footer ul li a {
+    color: white;
+    font-weight: 600;
+    font-size: 25px;
+}
+
+.copyright {
+    font-size: 20px;
+    color: white;
+}
+
+
+/* Respo */
+ 
