@@ -9,6 +9,11 @@
     
 }
 
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
 /* Background */
 
 #matrix {
@@ -32,12 +37,14 @@ header {
     align-items: center;
     justify-content: center;
     gap: 5rem;
-    background-color: rgba(0,0,0,0.8);
-    backdrop-filter: blur(8px);
     color: white;
     padding: 0.5rem 1.5rem;
     border-radius: 3rem;
     z-index: 1000;
+    background: rgba(255, 255, 255, 0.05);  
+    backdrop-filter: blur(10px);             
+    -webkit-backdrop-filter: blur(10px);     
+    border-radius: 1rem;
 }
 
 .logo {
@@ -74,7 +81,7 @@ li a:before {
     width: 0;
     left: 0;
     height: 1px;
-    top: 25px;
+    top: 1rem;
     border-radius: 1rem;
     transition: 0.3s ease-in-out;
     background: white;
@@ -92,18 +99,20 @@ li a:hover:before {
     border: none;
     font-weight: 500;
     font-size: 1.5rem;
-    color: white;
+    color: black;
     cursor: pointer;
     text-wrap: nowrap;
     transition: 0.3s ease-in-out;
-    background: linear-gradient(to right, rgb(115, 0, 255), rgb(1, 131, 212));
+    background:white;
 }
 
 .visit-btn:hover {
     transform: scale(1.03);
-    color: black;
+    color: white;
     background-color: white;
     background: white;
+    background: linear-gradient(to right, rgb(115, 0, 255), rgb(1, 131, 212));
+
 }
 
 #menu-icon {
@@ -202,6 +211,10 @@ section {
 
 }
 
+.tryhackme1:hover {
+    filter: none;
+}
+
 #nofilter {
     filter: none;
 }
@@ -215,7 +228,7 @@ section {
 .btn {
     border-radius: 3rem;
     padding: 0.5rem 1.5rem;
-    border: 2px solid black;
+    border: 2px solid white;
     cursor: pointer;
     font-weight: 500;
     text-wrap: nowrap;
@@ -315,6 +328,18 @@ section {
 .grid-card i{
     font-size: 1.5rem;
     margin-bottom: 1rem;
+
+}
+
+.tech-icons {
+    display: flex;
+    flex-direction: row;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+
+}
+.tech-icons {
+    font-size: 1.5rem;
 }
 
 .grid-card span {
@@ -359,14 +384,13 @@ section {
     gap: 1.5rem;
     border: 2px solid white;
     border-radius: 1rem;
-    transition: 0.3 ease-in-out;
+    transition: 0.3s ease-in-out;
     color: white;
     background: rgba(255, 255, 255, 0.05);  
     backdrop-filter: blur(10px);             
     -webkit-backdrop-filter: blur(10px);     
     border-radius: 1rem;
 }
-
 
 
 .projects-card:hover {
@@ -445,4 +469,138 @@ footer ul li a {
 
 
 /* Respo */
- 
+ @media(max-width: 1280px) {
+
+    header {
+        padding: 1rem 2rem;
+        gap: 2rem;
+    }
+
+    .about .about-container {
+        gap: 3rem;
+
+    }
+
+    .experience-info {
+        flex-direction: column;
+    }
+
+    .input-box input {
+        padding: 2rem 5rem;
+        font-size: 2.5rem;
+    }
+
+    .input input::placeholder{
+        font-size: 2.5rem;
+
+    }
+
+    .input-box i{
+        font-size: 2.5rem;
+    }
+
+
+ }
+
+ @media(max-width: 768px) {
+
+    header {
+        gap: 1rem;
+        padding: 1rem 1rem;
+    }
+
+    header .logo {
+        font-size: 1rem;
+    }
+
+    header .visit-btn {
+        display: none;
+    }
+
+    .about-container{
+        flex-direction: column;
+    }
+
+    .input-box input{
+        padding: 1rem 2rem;
+        font-size: 1.8rem;
+
+    }
+
+    .input-box input::placeholder {
+        font-size: 1.5rem;
+    }
+
+    .input-box i{
+        display: none;
+    }
+
+    .grid {
+        grid-template-columns: repeat(1, 1fr);
+    }
+
+    .experience-info img{
+        width: 70vw;
+    }
+ }
+
+ @media(max-width: 600px) {
+
+    header #menu-icon{
+        display: block;
+    }
+
+    .nav-links {
+        position: absolute;
+        top: 100%;
+        margin-top: 1rem;
+        width: 100%;
+        padding: 1rem;
+        color: white;
+        display: none;
+        flex-direction: column;
+        text-align: center;
+        background: black;
+        border-radius: 5rem;
+    }
+
+    .nav-links li{
+        margin-top: 1.5rem;
+        padding: 1rem;
+    }
+
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+    }
+
+    header {
+        padding: 1rem 5rem;
+    }
+
+    header .logo {
+        font-size: 1.5rem;
+    }
+
+    .about-container img {
+        width: 80vw;
+    }
+
+    .input-box input{
+        padding: 0.5rem 3rem;
+        width: 80%;
+        font-size: 1.5rem;
+    }
+
+    .input-box input::placeholder{
+        font-size: 1.5rem;
+    }
+
+    footer ul{
+        gap: 1rem;
+    }
+
+
+
+ }
+

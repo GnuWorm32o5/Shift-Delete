@@ -1,15 +1,20 @@
 document.getElementById('warning').addEventListener('click', () => {
-    alert("Congratulations! You have just pressed a phishing link and I collected all of your information, thanks! .. Just kidding.. but you get the point :).");
+    alert("Congratulations! You have just pressed a phishing link and I collected all of your information, thanks! .. Just kidding.. but you get the point :)");
 });
 
-// Hamburger menu toggle
+// // Hamburger menu toggle
 const menuIcon = document.querySelector('#menu-icon');
 const navLinks = document.querySelector('.nav-links');
 
-menuIcon.onclick () => {
+menuIcon.onclick = () => {
     navLinks.classList.toggle('active');
-    
 }
+
+document.querySelectorAll('.nav-links a').forEach(link => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
+});
 
 
 
