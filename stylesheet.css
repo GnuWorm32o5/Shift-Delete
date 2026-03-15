@@ -6,6 +6,7 @@
     text-decoration: none;
     scroll-behavior: smooth;
     list-style: none;
+    
 }
 
 header {
@@ -83,8 +84,9 @@ li a:hover:before {
 }
 
 .visit-btn:hover {
-    background: linear-gradient(to right, rgb(132, 0, 255), rgb(0, 157, 255) );
     transform: scale(1.03);
+    color: black;
+    background-color: white;
 }
 
 #menu-icon {
@@ -112,12 +114,40 @@ section {
     gap: 10rem;
 }
 
+@property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+}
+
 .about img {
+    border: 2px solid transparent;
+    background: linear-gradient(#0a0a0a, #0a0a0a) padding-box;
+    animation: rotate-border 10s linear infinite, wavy-border 6s ease-in-out infinite;
+    
+}
+
+@keyframes rotate-border {
+    to { --angle: 360deg; }
+}
+
+@keyframes wavy-border {
+    0%   { border-radius: 50% 50% 40% 60% / 60% 60% 40% 40%; }
+    20%  { border-radius: 40% 60% 30% 70% / 70% 50% 50% 30%; }
+    40%  { border-radius: 60% 40% 50% 50% / 50% 70% 30% 50%; }
+    60%  { border-radius: 35% 65% 40% 60% / 65% 45% 55% 35%; }
+    80%  { border-radius: 55% 45% 60% 40% / 45% 65% 35% 55%; }
+    100% { border-radius: 50% 50% 40% 60% / 60% 60% 40% 40%; }
+}
+
+
+/* .about img {
     width: 350px;
     max-width: 350px;
     border: 2px solid rgb(1, 131, 212);
-    /* border: 2px solid black; */
     animation: wavy-border 20s ease-in-out infinite;
+     box-shadow: 0 0 15px rgb(0, 157, 255),
+                0 0 30px rgba(0, 157, 255, 0.4);
 }
 
   @keyframes wavy-border {
@@ -153,7 +183,7 @@ section {
       100% {
         border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     }
-}
+} */
 
 /* .about img {
     width: 350px;
