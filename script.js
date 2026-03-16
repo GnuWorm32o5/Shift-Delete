@@ -2,6 +2,17 @@ document.getElementById('warning').addEventListener('click', () => {
     alert("Congratulations! You have just pressed a phishing link and I collected all of your information, thanks! .. Just kidding.. but you get the point :)");
 });
 
+// Cursor
+
+const cursor = document.createElement('div');
+cursor.classList.add('custom-cursor');
+document.body.appendChild(cursor);
+
+document.addEventListener('mousemove', (e) => {
+    cursor.style.left = e.clientX + 'px';
+    cursor.style.top = e.clientY + 'px';
+});
+
 // // Hamburger menu toggle
 const menuIcon = document.querySelector('#menu-icon');
 const navLinks = document.querySelector('.nav-links');
@@ -56,3 +67,19 @@ window.addEventListener('resize', () => {
         canvas.height = window.screen.height;
     }, 300);
 });
+
+// Typing my name
+
+const text = "Stevan / Steven";
+const target = document.getElementById('typing-text');
+let i = 0;
+
+function typeWriter() {
+    if (i < text.length) {
+        target.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+    }
+}
+
+typeWriter();
