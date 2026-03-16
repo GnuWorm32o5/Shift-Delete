@@ -21,8 +21,8 @@ document.querySelectorAll('.nav-links a').forEach(link => {
 const canvas = document.getElementById('matrix');
 const ctx = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = window.screen.width; 
+canvas.height = window.screen.height;
 
 const letters = '01アイウエオカキクケコサシスセソタチツテトナニヌネノ';
 const fontSize = 14;
@@ -32,6 +32,8 @@ const drops = Array(Math.floor(columns)).fill(1);
 function draw() {
     ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+    // ctx.clearRect(0, 0, canvas.width, canvas.height);    <<<<<<< Snezni efekat Matrixa, sacuvati za praznike :) 
 
     ctx.fillStyle = 'white'; 
     ctx.font = fontSize + 'px monospace';
@@ -46,7 +48,11 @@ function draw() {
 
 setInterval(draw, 75);
 
+let resizeTimeout;
 window.addEventListener('resize', () => {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+        canvas.width = window.screen.width;
+        canvas.height = window.screen.height;
+    }, 300);
 });

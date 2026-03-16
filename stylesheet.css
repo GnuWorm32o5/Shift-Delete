@@ -9,6 +9,10 @@
     
 }
 
+body {
+    background-color: #0a0a0a;
+}
+
 a {
     color: inherit;
     text-decoration: none;
@@ -521,6 +525,25 @@ footer ul li a {
         flex-direction: column;
     }
 
+     .about .about-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .about img {
+        width: 60vw;
+    }
+
+    .info-box {
+        width: 90%;
+    }
+
+    section {
+        padding: 6rem 5%; /* reduce side padding on mobile */
+    }
+
+
     .input-box input{
         padding: 1rem 2rem;
         font-size: 1.8rem;
@@ -600,7 +623,82 @@ footer ul li a {
         gap: 1rem;
     }
 
-
-
  }
+
+ @media(max-width: 375px) {
+    section {
+        padding: 6rem 3%;
+    }
+
+    .about .about-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .about img {
+        width: 75vw;
+    }
+
+    .info-box {
+        width: 95%;
+        padding: 1rem;
+    }
+
+    .info-box h1 {
+        font-size: 1.5rem;
+    }
+
+    .info-box span {
+        font-size: 1rem;
+    }
+
+    .info-box h3 {
+        font-size: 1rem;
+    }
+
+    .tryhackme1 {
+        width: 100% !important;
+        max-width: 280px;
+    }
+
+    .socials i {
+        font-size: 1.3rem;
+    }
+
+    .socials {
+        gap: 0.8rem;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-info {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .experience img {
+        width: 75vw;
+    }
+
+    .section-title {
+        font-size: 1.8rem;
+    }
+
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+
+    footer ul {
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    footer ul li a {
+        font-size: 0.9rem;
+    }
+}
 
