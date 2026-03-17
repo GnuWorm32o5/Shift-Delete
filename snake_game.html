@@ -6,15 +6,56 @@ body { background: #0a0a0a; display: flex; flex-direction: column; align-items: 
 #score { font-size: 22px; font-weight: bold; letter-spacing: 4px; }
 #best { font-size: 13px; color: #555; margin-top: 4px; letter-spacing: 2px; }
 #msg { font-size: 12px; color: #444; margin-top: 6px; letter-spacing: 1px; }
-canvas { border: 1px solid #222; display: block; }
+canvas { border: 1px solid #222; display: block; touch-action: none; }
+
+/* D-PAD CONTROLS */
+#dpad {
+  display: grid;
+  grid-template-areas:
+    ". up ."
+    "left . right"
+    ". down .";
+  grid-template-columns: 60px 60px 60px;
+  grid-template-rows: 60px 60px 60px;
+  gap: 6px;
+  margin-top: 18px;
+}
+.dpad-btn {
+  background: #1a1a1a;
+  border: 1px solid #333;
+  border-radius: 10px;
+  color: #fff;
+  font-size: 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+  -webkit-user-select: none;
+  transition: background 0.1s;
+  touch-action: manipulation;
+}
+.dpad-btn:active { background: #333; }
+#btn-up    { grid-area: up; }
+#btn-left  { grid-area: left; }
+#btn-right { grid-area: right; }
+#btn-down  { grid-area: down; }
 </style>
 
 <div id="ui">
   <div id="score">SCORE: 0</div>
   <div id="best">BEST: 0</div>
-  <div id="msg">ARROW KEYS or WASD to move</div>
+  <div id="msg">ARROW KEYS / WASD / SWIPE / D-PAD</div>
 </div>
 <canvas id="c"></canvas>
+
+<!-- D-PAD BUTTONS -->
+<div id="dpad">
+  <button class="dpad-btn" id="btn-up">▲</button>
+  <button class="dpad-btn" id="btn-left">◀</button>
+  <button class="dpad-btn" id="btn-right">▶</button>
+  <button class="dpad-btn" id="btn-down">▼</button>
+</div>
 
 <script>
 const canvas = document.getElementById('c');
@@ -47,6 +88,12 @@ function spawnFood() {
   return pos;
 }
 
+function applyDir(d) {
+  if (d.x !== -dir.x || d.y !== -dir.y) nextDir = d;
+  if (!started) started = true;
+}
+
+// KEYBOARD
 document.addEventListener('keydown', e => {
   const map = {
     ArrowUp:{x:0,y:-1}, KeyW:{x:0,y:-1},
@@ -55,15 +102,54 @@ document.addEventListener('keydown', e => {
     ArrowRight:{x:1,y:0}, KeyD:{x:1,y:0}
   };
   if (map[e.code]) {
-    const d = map[e.code];
-    if (d.x !== -dir.x || d.y !== -dir.y) nextDir = d;
-    if (!started) started = true;
+    applyDir(map[e.code]);
     e.preventDefault();
   }
   if (gameOver && e.code === 'Space') init();
 });
 
+// CLICK TO START / RESTART
 canvas.addEventListener('click', () => { if (gameOver) init(); if (!started) started = true; });
+
+// D-PAD BUTTONS
+function addDpadBtn(id, d) {
+  const btn = document.getElementById(id);
+  btn.addEventListener('touchstart', e => { e.preventDefault(); applyDir(d); if (gameOver) init(); }, { passive: false });
+  btn.addEventListener('mousedown', e => { applyDir(d); if (gameOver) init(); });
+}
+addDpadBtn('btn-up',    {x:0,  y:-1});
+addDpadBtn('btn-down',  {x:0,  y:1});
+addDpadBtn('btn-left',  {x:-1, y:0});
+addDpadBtn('btn-right', {x:1,  y:0});
+
+// SWIPE DETECTION
+let touchStartX = 0, touchStartY = 0;
+canvas.addEventListener('touchstart', e => {
+  touchStartX = e.touches[0].clientX;
+  touchStartY = e.touches[0].clientY;
+  e.preventDefault();
+}, { passive: false });
+
+canvas.addEventListener('touchend', e => {
+  const dx = e.changedTouches[0].clientX - touchStartX;
+  const dy = e.changedTouches[0].clientY - touchStartY;
+  const absDx = Math.abs(dx);
+  const absDy = Math.abs(dy);
+
+  // Only register as swipe if moved more than 20px
+  if (Math.max(absDx, absDy) < 20) {
+    if (gameOver) init();
+    if (!started) started = true;
+    return;
+  }
+
+  if (absDx > absDy) {
+    applyDir(dx > 0 ? {x:1, y:0} : {x:-1, y:0});
+  } else {
+    applyDir(dy > 0 ? {x:0, y:1} : {x:0, y:-1});
+  }
+  e.preventDefault();
+}, { passive: false });
 
 function loop() {
   if (!started || gameOver) { draw(); return; }
@@ -138,7 +224,7 @@ function draw() {
     ctx.fillText('SNAKE', canvas.width/2, canvas.height/2 - 30);
     ctx.fillStyle = '#555';
     ctx.font = '13px monospace';
-    ctx.fillText('press any arrow key to start', canvas.width/2, canvas.height/2 + 10);
+    ctx.fillText('press any key or swipe to start', canvas.width/2, canvas.height/2 + 10);
     ctx.textAlign = 'left';
   }
 
@@ -154,7 +240,7 @@ function draw() {
     ctx.fillText('SCORE: ' + score, canvas.width/2, canvas.height/2);
     ctx.fillStyle = '#444';
     ctx.font = '13px monospace';
-    ctx.fillText('SPACE or CLICK to restart', canvas.width/2, canvas.height/2 + 35);
+    ctx.fillText('SPACE / TAP / D-PAD to restart', canvas.width/2, canvas.height/2 + 35);
     ctx.textAlign = 'left';
   }
 }
