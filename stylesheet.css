@@ -492,6 +492,111 @@ section {
     
 }
 
+/* Utils */
+
+.utilities {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+ 
+.utilities-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    width: 100%;
+}
+ 
+.utility-card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    font-family: 'Share Tech Mono', monospace;
+    transition: 0.3s ease;
+}
+ 
+.utility-card:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-4px);
+}
+ 
+.utility-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+ 
+.utility-icon {
+    font-size: 1.4rem;
+}
+ 
+.utility-title {
+    font-size: 1.1rem;
+    font-weight: 500;
+    color: white;
+    letter-spacing: 0.05em;
+}
+ 
+.utility-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+ 
+.ip-display {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+ 
+.ip-label {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.4);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+}
+ 
+.ip-value {
+    font-size: 0.85rem;
+    color: white;
+    letter-spacing: 0.05em;
+}
+ 
+.utility-btn {
+    margin-top: 0.5rem;
+    padding: 0.6rem 1.5rem;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
+    border-radius: 3rem;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: 0.2s ease;
+    align-self: flex-start;
+    letter-spacing: 0.05em;
+}
+ 
+.utility-btn:hover {
+    background: white;
+    color: black;
+}
+ 
+.utility-btn.copied {
+    background: white;
+    color: black;
+}
+
 /* Footer */
 
 footer {

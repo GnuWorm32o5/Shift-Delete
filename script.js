@@ -370,3 +370,39 @@ volIcon.addEventListener('click', () => {
 window.addEventListener('load', () => {
     loadTrack(currentTrack);
 });
+
+
+//  Ip Checked module
+
+async function fetchIP() {
+    try {
+        const res = await fetch('https://ipapi.co/json/');
+        const data = await res.json();
+ 
+        document.getElementById('ip-value').textContent    = data.ip || 'N/A';
+        document.getElementById('ip-location').textContent = `${data.city}, ${data.country_name}` || 'N/A';
+        document.getElementById('ip-isp').textContent      = data.org || 'N/A';
+ 
+    } catch (err) {
+        document.getElementById('ip-value').textContent    = 'Could not fetch';
+        document.getElementById('ip-location').textContent = '—';
+        document.getElementById('ip-isp').textContent      = '—';
+    }
+}
+ 
+// Copy IP to clipboard
+document.getElementById('copy-ip-btn').addEventListener('click', () => {
+    const ip = document.getElementById('ip-value').textContent;
+    if (ip === 'fetching...' || ip === 'Could not fetch') return;
+    navigator.clipboard.writeText(ip).then(() => {
+        const btn = document.getElementById('copy-ip-btn');
+        btn.textContent = 'Copied! ✓';
+        btn.classList.add('copied');
+        setTimeout(() => {
+            btn.textContent = 'Copy IP';
+            btn.classList.remove('copied');
+        }, 2000);
+    });
+});
+ 
+fetchIP();
