@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="stylesheet.css">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet">
 </head>
 <body>
 
@@ -39,35 +40,100 @@
 
 <section id="about" class="about">
     <div class="about-container">
-        <img src="img/perfil/face2.png" alt="" srcset="">
+ 
+        <!--  Face -->
+        <img src="img/perfil/face2.png" id="profile-pic"alt="Stevan Glavaški">
+ 
+        <!--  Info box -->
+        <div class="info-box">
+            <div class="text">
+                <h3>Hi! I'm</h3>
+                <h1 id="typing-text"></h1>
+                <span>Ethical Hacker in Training<br>IT Graduate &<br>Python Student</span>
+            </div>
+ 
+            <div class="btn-group">
+                <div class="btn" id="warning">My darkest secrets</div>
+            </div>
+            <!-- THM Badge -->
+ 
+            <div class="tryhackme">
+                <iframe class="tryhackme1"
+                    src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5710620"
+                    style="border:none; width:360px; height:76px; overflow:hidden; scrolling:no;"
+                    scrolling="no"></iframe>
+            </div>
+            <!-- Github Badge -->
 
-            <div class="info-box">
+    <a href="https://github.com/GnuWorm32o5" target="_blank">
+    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=GnuWorm32o5&layout=compact&theme=dark&hide_border=true&bg_color=00000000&text_color=ffffff&title_color=ffffff"
+    style="max-width: 300px; border-radius: 0.5rem;">
+</a>
 
-
-                <div class="text">
-                    <h3>Hi! I'm</h3>
-                    <h1 id="typing-text"></h1>
-                    <span> Ethical Hacker in Training<br> IT Graduate & <br> Python Student </span>
+ 
+            <div class="socials">
+                <a href="https://github.com/GnuWorm32o5"><i class="fa-brands fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/stevan-glavaski/"><i class="fa-brands fa-linkedin"></i></a>
+                <a href="https://linktr.ee/stiv021"><i class="fa-solid fa-tree"></i></a>
+                <a href="https://motobike-becej.great-site.net/?i=1"><i class="fa-solid fa-bicycle"></i></a>
+                <a href="https://www.facebook.com/Glavaski7"><i class="fa-brands fa-facebook"></i></a>
+                <a href="https://www.instagram.com/budi_brzzz_stevane/"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+ 
+        <!--  Terminal -->
+        <div class="terminal-box">
+            <div class="terminal-header">
+                <span class="t-dot red"></span>
+                <span class="t-dot yellow"></span>
+                <span class="t-dot green"></span>
+                <span class="t-title">root@FnShiftDelete:~</span>
+            </div>
+            <div class="terminal-body" id="terminal-body">
+ 
+                <div class="terminal-line">
+                    <span class="prompt">root@FnShiftDelete:~$</span>
+                    <span class="cmd" id="cmd1"></span>
                 </div>
-
-                <div class="btn-group">
-                    <div class="btn" id="warning">My darkest secrets</div>
+                <div class="static-output" id="out1"></div>
+ 
+                <div class="terminal-line">
+                    <span class="prompt">root@FnShiftDelete:~$</span>
+                    <span class="cmd" id="cmd2"></span>
                 </div>
-                <div class="tryhackme">
-                    <iframe class="tryhackme1" src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=5710620" 
-    style="border:none; width:360px; height:76px; overflow:hidden; scrolling:no;"
-    scrolling="no"></iframe>
+                <div class="static-output" id="out2"></div>
+ 
+                <div class="terminal-line">
+                    <span class="prompt">root@FnShiftDelete:~$</span>
+                    <span class="cmd" id="cmd3"></span>
                 </div>
-
-                <div class="socials">
-                    <a href="https://github.com/GnuWorm32o5"><i class="fa-brands fa-github"></i></a>
-                    <a href="https://www.linkedin.com/in/stevan-glavaski/"><i class="fa-brands fa-linkedin"></i></a>
-                    <a href="https://linktr.ee/stiv021"><i class="fa-solid fa-tree"></i></a>
-                    <a href="https://motobike-becej.great-site.net/?i=1"><i class="fa-solid fa-bicycle"></i></a>
-                    <a href="https://www.facebook.com/Glavaski7"><i class="fa-brands fa-facebook"></i></a>
-                    <a href="https://www.instagram.com/budi_brzzz_stevane/"><i class="fa-brands fa-instagram"></i></a>
+                <div class="static-output" id="out3"></div>
+ 
+                <div class="terminal-line">
+                    <span class="prompt">root@FnShiftDelete:~$</span>
+                    <span class="cmd" id="cmd4"></span>
+                </div>
+                <div class="static-output" id="out4"></div>
+ 
+                <div class="terminal-divider" id="divider" style="display:none"></div>
+ 
+                <div class="terminal-line" id="hashcat-line" style="display:none">
+                    <span class="prompt">root@FnShiftDelete:~$</span>
+                    <span class="cmd" id="cmd5"></span>
+                </div>
+                <div class="static-output dim" id="hc1" style="display:none">Hashcat v6.2.6 starting... Dictionary attack mode</div>
+                <div class="static-output dim" id="hc2" style="display:none">Hash: 5f4dcc3b5aa765d61d8327deb882cf99 (MD5)</div>
+                <div class="static-output dim" id="hc3" style="display:none">────────────────────────────────────────────</div>
+ 
+                <div id="crack-output"></div>
+ 
+                <div class="terminal-line blink-line">
+                    <span class="prompt">root@FnShiftDelete:~$</span>
+                    <span class="cursor-block">█</span>
                 </div>
             </div>
+        </div>
+ 
     </div>
 </section>
 
@@ -265,6 +331,43 @@ cleaning, thermal repasting and general troubleshooting.</p>
     <p class="copyright"> © All Rights Reserved | Stevan Glavaški 2026 © </p>
 
 </footer>
+
+<!-- Music player -->
+
+<div class="music-player" id="music-player">
+ 
+    <!-- Song info -->
+    <div class="player-info">
+        <div class="player-icon">♫</div>
+        <div class="song-marquee">
+            <span id="song-name">Original Bedroom Rockers</span>
+        </div>
+    </div>
+ 
+    <!-- Controls -->
+    <div class="player-controls">
+        <button class="player-btn" id="prev-btn" title="Previous">&#9664;&#9664;</button>
+        <button class="player-btn play-btn" id="play-btn" title="Play/Pause">&#9646;&#9646;</button>
+        <button class="player-btn" id="next-btn" title="Next">&#9654;&#9654;</button>
+    </div>
+ 
+    <!-- Progress bar -->
+    <div class="player-progress-wrap">
+        <span class="time-label" id="current-time">0:00</span>
+        <input type="range" class="player-progress" id="progress-bar" value="0" min="0" max="100" step="0.1">
+        <span class="time-label" id="total-time">0:00</span>
+    </div>
+ 
+    <!-- Volume -->
+    <div class="player-volume">
+        <span class="vol-icon" id="vol-icon">🔊</span>
+        <input type="range" class="volume-slider" id="volume-slider" min="0" max="1" step="0.01" value="0.5">
+    </div>
+ 
+</div>
+ 
+<audio id="audio-player" preload="auto"></audio>
+ 
 
 <script src="script.js"></script>
 </body>

@@ -107,3 +107,266 @@ document.querySelectorAll('.projects-card').forEach(card => {
         card.style.transition = 'transform 0.3s ease';
     });
 });
+
+
+// CLI
+
+// ── Typing engine ────────────────────────────────────────────────
+function typeInto(el, text, speed, callback) {
+    let i = 0;
+    function tick() {
+        if (i < text.length) {
+            el.textContent += text[i];
+            i++;
+            setTimeout(tick, speed);
+        } else if (callback) {
+            setTimeout(callback, 300);
+        }
+    }
+    tick();
+}
+ 
+// ── Sequence of commands + outputs ───────────────────────────────
+const sequence = [
+    { cmd: 'cmd1', out: 'out1', c: ' whoami',  o: '→ Stevan Glavaški — IT Graduate & Python Developer in Training' },
+    { cmd: 'cmd2', out: 'out2', c: ' skills',  o: '→ Python · JavaScript · Java · HTML/CSS · MySQL · Linux' },
+    { cmd: 'cmd3', out: 'out3', c: ' status',  o: '→ Building Python tools · TryHackMe active · Open to work 🇷🇸' },
+    { cmd: 'cmd4', out: 'out4', c: ' github',  o: null },  // special — has a link
+];
+ 
+function runSequence(index, done) {
+    if (index >= sequence.length) { done(); return; }
+    const s = sequence[index];
+    const cmdEl = document.getElementById(s.cmd);
+    const outEl = document.getElementById(s.out);
+ 
+    typeInto(cmdEl, s.c, 55, () => {
+        if (s.out === 'out4') {
+            // GitHub line — render as link
+            outEl.innerHTML = '→ <a href="https://github.com/GnuWorm32o5" target="_blank" class="terminal-link">github.com/GnuWorm32o5</a> · 15+ repositories';
+            setTimeout(() => runSequence(index + 1, done), 400);
+        } else {
+            typeInto(outEl, s.o, 18, () => runSequence(index + 1, done));
+        }
+    });
+}
+ 
+// ── After sequence: show hashcat section ─────────────────────────
+function startHashcat() {
+    document.getElementById('divider').style.display = 'block';
+    document.getElementById('hashcat-line').style.display = 'flex';
+ 
+    const cmd5 = document.getElementById('cmd5');
+    typeInto(cmd5, ' hashcat --attack-mode 0 hash.txt rockyou.txt', 40, () => {
+        document.getElementById('hc1').style.display = 'block';
+        document.getElementById('hc2').style.display = 'block';
+        document.getElementById('hc3').style.display = 'block';
+        setTimeout(startCrackLoop, 400);
+    });
+}
+ 
+// ── Password crack loop ───────────────────────────────────────────
+const passwords = [
+    "123456","password","iloveyou","admin","letmein","monkey","1234567890",
+    "dragon","master","123123","abc123","qwerty","superman","batman","sunshine",
+    "princess","welcome","shadow","michael","football","charlie","donald",
+    "password1","iloveyou1","123456789","1234567","12345678","1234","12345",
+    "123","test","pass","root","toor","hack","hacker","access","login",
+    "hello","welcome1","pass123","admin123","user","guest","default","change",
+    "temp","test123","demo","server","database","secure","secret","private",
+    "freedom","starwars","matrix","ninja","hunter","ranger","ranger1","wizard",
+    "silver","golden","thunder","lightning","falcon","eagle","cobra","viper",
+    "phoenix","dragon1","fire","ice","shadow1","ghost","zombie","virus",
+    "malware","exploit","payload","rootkit","backdoor","trojan","worm",
+    "phishing","sqlmap","metasploit","nmap","wireshark","kali","parrot",
+    "burpsuite","hashcat","johntheripper","mimikatz","netcat","ncat","socat",
+    "hydra","medusa","aircrack","reaver","ettercap","msfconsole","armitage",
+    "cobalt","empire","powershell","bash","shell","cmd","terminal","sudo",
+    "chmod","passwd","shadow","etc","var","tmp","home","root1","admin1",
+    "administrator","sysadmin","webmaster","postmaster","hostmaster","love",
+    "security","network","firewall","router","switch","gateway","proxy","vpn",
+    "123456","password","iloveyou","admin","letmein","monkey","1234567890",
+    "dragon","master","123123","abc123","qwerty","superman","batman","sunshine",
+    "princess","welcome","shadow","michael","football","charlie","donald",
+    "password1","iloveyou1","123456789","1234567","12345678","1234","12345",
+    "123","test","pass","root","toor","hack","hacker","access","login",
+    "hello","welcome1","pass123","admin123","user","guest","default","change",
+    "temp","test123","demo","server","database","secure","secret","private",
+    "freedom","starwars","matrix","ninja","hunter","ranger","ranger1","wizard",
+    "silver","golden","thunder","lightning","falcon","eagle","cobra","viper",
+    "phoenix","dragon1","fire","ice","shadow1","ghost","zombie","virus",
+    "malware","exploit","payload","rootkit","backdoor","trojan","worm",
+    "phishing","sqlmap","metasploit","nmap","wireshark","kali","parrot",
+    "burpsuite","hashcat","johntheripper","mimikatz","netcat","ncat","socat",
+    "hydra","medusa","aircrack","reaver","ettercap","msfconsole","armitage",
+    "cobalt","empire","powershell","bash","shell","cmd","terminal","sudo",
+    "chmod","passwd","shadow","etc","var","tmp","home","root1","admin1",
+    "administrator","sysadmin","webmaster","postmaster","hostmaster","love",
+    "security","network","firewall","router","switch","gateway","proxy","vpn",
+];
+ 
+const crackOutput = document.getElementById('crack-output');
+const terminalBody = document.getElementById('terminal-body');
+let pwIndex = 0;
+let charBuffer = '';
+let charPos = 0;
+let currentLineEl = null;
+ 
+function nextPassword() {
+    const pw = passwords[pwIndex % passwords.length];
+    pwIndex++;
+ 
+    const isCracked = pwIndex % 43 === 0;
+ 
+    currentLineEl = document.createElement('div');
+    currentLineEl.className = 'crack-entry' + (isCracked ? ' found' : '');
+    crackOutput.appendChild(currentLineEl);
+ 
+    // Keep only last 12 lines
+    const lines = crackOutput.querySelectorAll('.crack-entry');
+    if (lines.length > 12) lines[0].remove();
+ 
+    charBuffer = isCracked
+        ? `[FOUND] ${pw} → CRACKED ✓`
+        : `[${String(pwIndex).padStart(6,'0')}] Trying: ${pw}`;
+    charPos = 0;
+ 
+    typeChar();
+}
+ 
+function typeChar() {
+    if (charPos < charBuffer.length) {
+        currentLineEl.textContent += charBuffer[charPos];
+        charPos++;
+        terminalBody.scrollTop = terminalBody.scrollHeight;
+        setTimeout(typeChar, 28);
+    } else {
+        // Wait a little then start next password
+        setTimeout(nextPassword, 120);
+    }
+}
+ 
+function startCrackLoop() {
+    nextPassword();
+}
+ 
+// ── Boot sequence ─────────────────────────────────────────────────
+window.addEventListener('DOMContentLoaded', () => {
+    runSequence(0, startHashcat);
+});
+
+
+//Music player
+
+
+const tracks = [
+    { name: "commun1cate",           src: "/music/comm.mp3" },
+    { name: "c0wgirl",                  src: "/music/cowgirl.mp3" },
+
+];
+ 
+const audio       = document.getElementById('audio-player');
+const playBtn     = document.getElementById('play-btn');
+const prevBtn     = document.getElementById('prev-btn');
+const nextBtn     = document.getElementById('next-btn');
+const songName    = document.getElementById('song-name');
+const progressBar = document.getElementById('progress-bar');
+const currentTime = document.getElementById('current-time');
+const totalTime   = document.getElementById('total-time');
+const volSlider   = document.getElementById('volume-slider');
+const volIcon     = document.getElementById('vol-icon');
+ 
+let currentTrack = 0;
+let isPlaying = false;
+ 
+function formatTime(secs) {
+    const m = Math.floor(secs / 60);
+    const s = Math.floor(secs % 60);
+    return `${m}:${s.toString().padStart(2, '0')}`;
+}
+ 
+function loadTrack(index) {
+    const track = tracks[index];
+    audio.src = track.src;
+    songName.textContent = track.name;
+    audio.volume = parseFloat(volSlider.value);
+}
+ 
+function playTrack() {
+    audio.play().catch(() => {});
+    isPlaying = true;
+    playBtn.innerHTML = '&#9646;&#9646;'; // pause icon
+}
+ 
+function pauseTrack() {
+    audio.pause();
+    isPlaying = false;
+    playBtn.innerHTML = '&#9654;'; // play icon
+}
+ 
+// Play / Pause
+playBtn.addEventListener('click', () => {
+    if (isPlaying) pauseTrack();
+    else playTrack();
+});
+ 
+// Previous
+prevBtn.addEventListener('click', () => {
+    currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
+    loadTrack(currentTrack);
+    playTrack();
+});
+ 
+// Next
+nextBtn.addEventListener('click', () => {
+    currentTrack = (currentTrack + 1) % tracks.length;
+    loadTrack(currentTrack);
+    playTrack();
+});
+ 
+// Auto next when song ends
+audio.addEventListener('ended', () => {
+    currentTrack = (currentTrack + 1) % tracks.length;
+    loadTrack(currentTrack);
+    playTrack();
+});
+ 
+// Progress bar update
+audio.addEventListener('timeupdate', () => {
+    if (!audio.duration) return;
+    const pct = (audio.currentTime / audio.duration) * 100;
+    progressBar.value = pct;
+    currentTime.textContent = formatTime(audio.currentTime);
+    totalTime.textContent   = formatTime(audio.duration);
+});
+ 
+// Seek
+progressBar.addEventListener('input', () => {
+    if (!audio.duration) return;
+    audio.currentTime = (progressBar.value / 100) * audio.duration;
+});
+ 
+// Volume
+volSlider.addEventListener('input', () => {
+    audio.volume = parseFloat(volSlider.value);
+    volIcon.textContent = audio.volume === 0 ? '🔇' : audio.volume < 0.5 ? '🔉' : '🔊';
+});
+ 
+// Mute toggle on icon click
+volIcon.addEventListener('click', () => {
+    if (audio.volume > 0) {
+        volSlider.dataset.prev = volSlider.value;
+        audio.volume = 0;
+        volSlider.value = 0;
+        volIcon.textContent = '🔇';
+    } else {
+        const prev = parseFloat(volSlider.dataset.prev) || 0.7;
+        audio.volume = prev;
+        volSlider.value = prev;
+        volIcon.textContent = '🔊';
+    }
+});
+ 
+window.addEventListener('load', () => {
+    loadTrack(currentTrack);
+});
