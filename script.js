@@ -13,7 +13,7 @@ document.addEventListener('mousemove', (e) => {
     cursor.style.top = e.clientY + 'px';
 });
 
-// // Hamburger menu toggle
+// Hamburger menu toggle
 const menuIcon = document.querySelector('#menu-icon');
 const navLinks = document.querySelector('.nav-links');
 
@@ -241,7 +241,6 @@ function typeChar() {
         terminalBody.scrollTop = terminalBody.scrollHeight;
         setTimeout(typeChar, 28);
     } else {
-        // Wait a little then start next password
         setTimeout(nextPassword, 120);
     }
 }
@@ -256,13 +255,11 @@ window.addEventListener('DOMContentLoaded', () => {
 });
 
 
-//Music player
-
+// Music player
 
 const tracks = [
-    { name: "commun1cate",           src: "/music/comm.mp3" },
-    { name: "c0wgirl",                  src: "/music/cowgirl.mp3" },
-
+    { name: "commun1cate", src: "/music/comm.mp3" },
+    { name: "c0wgirl",     src: "/music/cowgirl.mp3" },
 ];
  
 const audio       = document.getElementById('audio-player');
@@ -295,43 +292,38 @@ function loadTrack(index) {
 function playTrack() {
     audio.play().catch(() => {});
     isPlaying = true;
-    playBtn.innerHTML = '&#9646;&#9646;'; // pause icon
+    playBtn.innerHTML = '&#9646;&#9646;';
 }
  
 function pauseTrack() {
     audio.pause();
     isPlaying = false;
-    playBtn.innerHTML = '&#9654;'; // play icon
+    playBtn.innerHTML = '&#9654;';
 }
  
-// Play / Pause
 playBtn.addEventListener('click', () => {
     if (isPlaying) pauseTrack();
     else playTrack();
 });
  
-// Previous
 prevBtn.addEventListener('click', () => {
     currentTrack = (currentTrack - 1 + tracks.length) % tracks.length;
     loadTrack(currentTrack);
     playTrack();
 });
  
-// Next
 nextBtn.addEventListener('click', () => {
     currentTrack = (currentTrack + 1) % tracks.length;
     loadTrack(currentTrack);
     playTrack();
 });
  
-// Auto next when song ends
 audio.addEventListener('ended', () => {
     currentTrack = (currentTrack + 1) % tracks.length;
     loadTrack(currentTrack);
     playTrack();
 });
  
-// Progress bar update
 audio.addEventListener('timeupdate', () => {
     if (!audio.duration) return;
     const pct = (audio.currentTime / audio.duration) * 100;
@@ -340,19 +332,16 @@ audio.addEventListener('timeupdate', () => {
     totalTime.textContent   = formatTime(audio.duration);
 });
  
-// Seek
 progressBar.addEventListener('input', () => {
     if (!audio.duration) return;
     audio.currentTime = (progressBar.value / 100) * audio.duration;
 });
  
-// Volume
 volSlider.addEventListener('input', () => {
     audio.volume = parseFloat(volSlider.value);
     volIcon.textContent = audio.volume === 0 ? '🔇' : audio.volume < 0.5 ? '🔉' : '🔊';
 });
  
-// Mute toggle on icon click
 volIcon.addEventListener('click', () => {
     if (audio.volume > 0) {
         volSlider.dataset.prev = volSlider.value;
@@ -372,7 +361,7 @@ window.addEventListener('load', () => {
 });
 
 
-//  Ip Checked module
+// IP Checker
 
 async function fetchIP() {
     try {
@@ -390,7 +379,6 @@ async function fetchIP() {
     }
 }
  
-// Copy IP to clipboard
 document.getElementById('copy-ip-btn').addEventListener('click', () => {
     const ip = document.getElementById('ip-value').textContent;
     if (ip === 'fetching...' || ip === 'Could not fetch') return;
@@ -406,3 +394,120 @@ document.getElementById('copy-ip-btn').addEventListener('click', () => {
 });
  
 fetchIP();
+
+
+// Navbar Clock - Serbian time
+
+function updateClock() {
+    const now = new Date();
+    const serbian = new Date(now.toLocaleString('en-US', { timeZone: 'Europe/Belgrade' }));
+    
+    const h = String(serbian.getHours()).padStart(2, '0');
+    const m = String(serbian.getMinutes()).padStart(2, '0');
+    const s = String(serbian.getSeconds()).padStart(2, '0');
+    
+    document.getElementById('nav-clock').textContent = `${h}:${m}:${s}`;
+}
+
+setInterval(updateClock, 1000);
+updateClock();
+
+// Password Strength Checker
+const pwInput   = document.getElementById('pw-input');
+const pwBar     = document.getElementById('pw-bar');
+const pwLabel   = document.getElementById('pw-label');
+const pwToggle  = document.getElementById('pw-toggle');
+
+const checks = {
+    length:  { el: document.getElementById('chk-length'),  test: p => p.length >= 8,           msg: '8+ characters' },
+    upper:   { el: document.getElementById('chk-upper'),   test: p => /[A-Z]/.test(p),         msg: 'Uppercase letter' },
+    lower:   { el: document.getElementById('chk-lower'),   test: p => /[a-z]/.test(p),         msg: 'Lowercase letter' },
+    number:  { el: document.getElementById('chk-number'),  test: p => /[0-9]/.test(p),         msg: 'Number' },
+    special: { el: document.getElementById('chk-special'), test: p => /[^A-Za-z0-9]/.test(p), msg: 'Special character (!@#$...)' },
+};
+
+const levels = [
+    { label: 'Too Short',   color: '#555',    width: '5%'   },
+    { label: 'Weak',        color: '#ff4444', width: '25%'  },
+    { label: 'Fair',        color: '#ff9900', width: '50%'  },
+    { label: 'Strong',      color: '#aaff00', width: '75%'  },
+    { label: 'Very Strong', color: '#00ff88', width: '100%' },
+];
+
+pwInput.addEventListener('input', () => {
+    const p = pwInput.value;
+
+    if (p.length === 0) {
+        pwBar.style.width = '0%';
+        pwLabel.textContent = '—';
+        pwLabel.style.color = 'rgba(255,255,255,0.3)';
+        Object.values(checks).forEach(c => {
+            c.el.textContent = `✗ ${c.msg}`;
+            c.el.classList.remove('pass');
+        });
+        return;
+    }
+
+    let score = 0;
+    Object.values(checks).forEach(c => {
+        const passed = c.test(p);
+        if (passed) score++;
+        c.el.textContent = `${passed ? '✓' : '✗'} ${c.msg}`;
+        c.el.classList.toggle('pass', passed);
+    });
+
+    // if too short, force level 0
+    const level = p.length < 4 ? 0 : score;
+    const { label, color, width } = levels[level];
+
+    pwBar.style.width = width;
+    pwBar.style.background = color;
+    pwLabel.textContent = label;
+    pwLabel.style.color = color;
+});
+
+// Show / hide password toggle
+pwToggle.addEventListener('click', () => {
+    const isHidden = pwInput.type === 'password';
+    pwInput.type = isHidden ? 'text' : 'password';
+    pwToggle.textContent = isHidden ? '🙈' : '👁';
+});
+
+// Password Generator
+function generatePassword() {
+    const upper   = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    const lower   = 'abcdefghijklmnopqrstuvwxyz';
+    const numbers = '0123456789';
+    const special = '!@#$%^&*()_+-=[]{}|;:,.<>?';
+    const all     = upper + lower + numbers + special;
+
+    // Guarantee at least one of each
+    let password = [
+        upper[Math.floor(Math.random() * upper.length)],
+        lower[Math.floor(Math.random() * lower.length)],
+        numbers[Math.floor(Math.random() * numbers.length)],
+        special[Math.floor(Math.random() * special.length)],
+    ];
+
+    // Fill up to 16 chars
+    for (let i = password.length; i < 16; i++) {
+        password.push(all[Math.floor(Math.random() * all.length)]);
+    }
+
+    // Shuffle so the guaranteed chars aren't always at the start
+    password = password.sort(() => Math.random() - 0.5).join('');
+    document.getElementById('pw-generated').textContent = password;
+    document.getElementById('pw-copy-btn').textContent = 'Copy';
+}
+
+document.getElementById('pw-gen-btn').addEventListener('click', generatePassword);
+
+document.getElementById('pw-copy-btn').addEventListener('click', () => {
+    const pw = document.getElementById('pw-generated').textContent;
+    if (pw === 'Click generate to get a password') return;
+    navigator.clipboard.writeText(pw).then(() => {
+        const btn = document.getElementById('pw-copy-btn');
+        btn.textContent = 'Copied! ✓';
+        setTimeout(() => btn.textContent = 'Copy', 2000);
+    });
+});

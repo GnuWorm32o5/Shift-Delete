@@ -29,10 +29,17 @@
             <a href="#projects">Projects</a>
         </li>
 
+        <li>
+            <a href="#certifications">Certs</a>
+        </li>
+
          <li>
             <a href="#utilities">Utilities</a>
         </li>
     </ul>
+
+    <div class="nav-clock" id="nav-clock">00:00:00</div>
+
 
     <i class="fa-solid fa-bars" id="menu-icon"></i>
 
@@ -53,7 +60,7 @@
             <div class="text">
                 <h3>Hi! I'm</h3>
                 <h1 id="typing-text"></h1>
-                <span>Ethical Hacker in Training<br>IT Graduate &<br>Python Student</span>
+                <span>Python developer in training <br>Cybersecurity Enthusiast<br>IT Graduate</span>
             </div>
  
             <div class="btn-group">
@@ -67,12 +74,7 @@
                     style="border:none; width:360px; height:76px; overflow:hidden; scrolling:no;"
                     scrolling="no"></iframe>
             </div>
-            <!-- Github Badge -->
-
-    <a href="https://github.com/GnuWorm32o5" target="_blank">
-    <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=GnuWorm32o5&layout=compact&theme=dark&hide_border=true&bg_color=00000000&text_color=ffffff&title_color=ffffff"
-    style="max-width: 300px; border-radius: 0.5rem;">
-</a>
+           
 
  
             <div class="socials">
@@ -315,12 +317,93 @@ cleaning, thermal repasting and general troubleshooting.</p>
 </div>
 </section>
 
+<div class="certifications" id="certifications">
+    <h2 class="section-title"></h2>
+    <div class="utilities-grid">
+
+    </div>
+</div>
+
+<!-- Certification section -->
+
+<!-- Certifications section -->
+<section class="certifications" id="certifications">
+    <h2 class="section-title">Certifications</h2>
+    <div class="cert-grid">
+
+        <div class="cert-card">
+            <div class="cert-icon">🎓</div>
+            <div class="cert-info">
+                <h3>Bachelor's degree in Information Technology</h3>
+                <span class="cert-issuer">Fakultet za ekonomiju i inženjerski menadžment — Serbia</span>
+                <span class="cert-date">2024</span>
+            </div>
+            <div class="cert-badge earned">Earned</div>
+        </div>
+
+        <div class="cert-card">
+            <div class="cert-icon">🗄️</div>
+            <div class="cert-info">
+                <h3>SQL</h3>
+                <span class="cert-issuer">Online Kursevi Programiranja</span>
+                <span class="cert-date">October 2023</span>
+            </div>
+            <div class="cert-badge earned">Earned</div>
+        </div>
+
+        <div class="cert-card">
+            <div class="cert-icon">🔒</div>
+            <div class="cert-info">
+                <h3>Pre Security Learning Path</h3>
+                <span class="cert-issuer">TryHackMe</span>
+                <span class="cert-date">November 2025 </span>
+            </div>
+            <div class="cert-badge earned">Earned</div>
+        </div>
+
+        <div class="cert-card">
+            <div class="cert-icon">🐍</div>
+            <div class="cert-info">
+                <h3>Introduction to Python</h3>
+                <span class="cert-issuer">Coddy.tech</span>
+                <span class="cert-date">January 2026</span>
+            </div>
+            <div class="cert-badge earned">Earned</div>
+        </div>
+
+              <div class="cert-card">
+            <div class="cert-icon">🐍</div>
+            <div class="cert-info">
+                <h3>Python Fundamentals</h3>
+                <span class="cert-issuer">Coddy.tech</span>
+                <span class="cert-date">March 2026</span>
+            </div>
+            <div class="cert-badge earned">Earned</div>
+        </div>
+
+
+        <div class="cert-card">
+            <div class="cert-icon">🛡️</div>
+            <div class="cert-info">
+                <h3>Cyber Security 101</h3>
+                <span class="cert-issuer">TryHackMe</span>
+                <span class="cert-date">In progress...</span>
+            </div>
+            <div class="cert-badge in-progress">In Progress</div>
+        </div>
+
+<!-- cert-badge in-progress i earned -->
+
+    </div>
+</section>
+
 <!-- Utility section -->
 
 <section class="utilities" id="utilities">
         <h2 class="section-title">Utilities</h2>
         <div class="utilities-grid">
 
+            <!-- IP adress checker -->
             <div class="utility-card" id="ip-checker">
     <div class="utility-header">
         <span class="utility-icon">⌨</span>
@@ -344,12 +427,42 @@ cleaning, thermal repasting and general troubleshooting.</p>
 </div>
 
 
+<!-- Password Strength Checker -->
+<div class="utility-card">
+    <div class="utility-header">
+        <span class="utility-icon">🔐</span>
+        <h3 class="utility-title">Password Strength Checker / How strong is yours? /</h3>
+    </div>
+    <div class="utility-body">
+        <div class="pw-input-wrap">
+            <input type="password" id="pw-input" class="pw-input" placeholder="Type a password...">
+            <button class="pw-toggle" id="pw-toggle">👁</button>
         </div>
-
-    
-
+        <div class="pw-bar-wrap">
+            <div class="pw-bar" id="pw-bar"></div>
+        </div>
+        <div class="pw-label" id="pw-label">—</div>
+        <div class="pw-checks" id="pw-checks">
+            <div class="pw-check" id="chk-length">✗ At least 8 characters</div>
+            <div class="pw-check" id="chk-upper">✗ Uppercase letter</div>
+            <div class="pw-check" id="chk-lower">✗ Lowercase letter</div>
+            <div class="pw-check" id="chk-number">✗ Number</div>
+            <div class="pw-check" id="chk-special">✗ Special character (!@#$...)</div>
+        </div>
+    </div>
+    <!-- Password Generator -->
+<div class="pw-divider">— or generate one —</div>
+<div class="pw-gen-wrap">
+    <div class="pw-generated" id="pw-generated">Click generate to get a password</div>
+    <div class="pw-gen-btns">
+        <button class="utility-btn" id="pw-gen-btn">Generate</button>
+        <button class="utility-btn" id="pw-copy-btn">Copy</button>
+    </div>
+</div>
+</div>
 
 </section>
+
 
 <!-- Footer -->
 

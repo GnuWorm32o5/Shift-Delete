@@ -1274,3 +1274,248 @@ footer {
         width: 45px;
     }
 }
+
+
+.news-item {
+    padding: 0.8rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.news-item:last-child {
+    border-bottom: none;
+}
+
+.news-title {
+    color: rgba(255, 255, 255, 0.85);
+    font-size: 0.8rem;
+    font-family: 'Share Tech Mono', monospace;
+    line-height: 1.5;
+    display: block;
+    transition: color 0.2s;
+}
+
+.news-title:hover {
+    color: white;
+}
+
+.news-date {
+    font-size: 0.68rem;
+    color: rgba(255, 255, 255, 0.3);
+    margin-top: 0.3rem;
+}
+
+/* Navbar Clock */
+.nav-clock {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    letter-spacing: 0.1em;
+    text-wrap: nowrap;
+    transition: color 0.3s;
+}
+
+.nav-clock:hover {
+    color: white;
+}
+
+/* Password Strength Checker */
+.pw-input-wrap {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.pw-input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    padding: 0.6rem 1rem;
+    color: white;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.pw-input:focus {
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.pw-input::placeholder {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.pw-toggle {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 0.5rem;
+    color: white;
+    padding: 0.5rem 0.7rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: 0.2s ease;
+}
+
+.pw-toggle:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+.pw-bar-wrap {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.pw-bar {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    transition: width 0.4s ease, background 0.4s ease;
+}
+
+.pw-label {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.3);
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+}
+
+.pw-checks {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+}
+
+.pw-check {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.72rem;
+    color: rgba(255, 255, 255, 0.25);
+    transition: color 0.2s;
+    letter-spacing: 0.03em;
+}
+
+.pw-check.pass {
+    color: #00ff88;
+}
+
+/* Password Generator */
+.pw-divider {
+    text-align: center;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.7rem;
+    color: rgba(255, 255, 255, 0.2);
+    letter-spacing: 0.1em;
+    margin: 0.5rem 0;
+}
+
+.pw-gen-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.pw-generated {
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 0.5rem;
+    padding: 0.7rem 1rem;
+    letter-spacing: 0.05em;
+    word-break: break-all;
+}
+
+.pw-gen-btns {
+    display: flex;
+    gap: 0.8rem;
+}
+
+/* Certifications */
+.certifications {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cert-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    width: 100%;
+}
+
+.cert-card {
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 1rem;
+    transition: 0.3s ease;
+    color: white;
+}
+
+.cert-card:hover {
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-4px);
+}
+
+.cert-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+}
+
+.cert-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    flex: 1;
+}
+
+.cert-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: white;
+}
+
+.cert-issuer {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.5);
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.cert-date {
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.3);
+    font-family: 'Share Tech Mono', monospace;
+}
+
+.cert-badge {
+    padding: 0.3rem 0.8rem;
+    border-radius: 3rem;
+    font-size: 0.7rem;
+    font-family: 'Share Tech Mono', monospace;
+    letter-spacing: 0.05em;
+    flex-shrink: 0;
+}
+
+.cert-badge.earned {
+    background: rgba(0, 255, 136, 0.1);
+    border: 1px solid rgba(0, 255, 136, 0.4);
+    color: #00ff88;
+}
+
+.cert-badge.in-progress {
+    background: rgba(255, 153, 0, 0.1);
+    border: 1px solid rgba(255, 153, 0, 0.4);
+    color: #ff9900;
+}
