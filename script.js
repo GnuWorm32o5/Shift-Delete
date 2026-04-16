@@ -72,7 +72,7 @@ window.addEventListener('resize', () => {
 });
 
 // Typing name animation
-const text   = "Stevan / Steven";
+const text   = "Stevan";
 const target = document.getElementById('typing-text');
 let i = 0;
 
@@ -399,8 +399,8 @@ detectUA();
 // Music player
 
 const tracks = [
-    { name: "commun1cate", src: "/music/comm.mp3"    },
-    { name: "c0wgirl",     src: "/music/cowgirl.mp3" },
+    { name: "A$AP - skyl1ne", src: "/music/A$AP Rocky, $UICIDEBOY$, Denzel Curry - SKYLINE (Music Video).mp3"},
+    { name: "r4pture",     src: "/music/Rapture (John Creamer & Stephane K.mp3"}
 ];
 
 const audio       = document.getElementById('audio-player');
