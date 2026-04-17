@@ -400,9 +400,10 @@ detectUA();
 
 const tracks = [
     { name: "A$AP - skyl1ne", src: "/music/A$AP Rocky, $UICIDEBOY$, Denzel Curry - SKYLINE (Music Video).mp3"},
-    { name: "The Notorious B.I.G - P4rty", src:"/music/Biggie Smalls - Party & Bullshit .mp3"},
+    { name: "Gorillaz - Fl1nt Beastwood", src:"/music/Gorillaz - Clint Eastwood (Official Video).mp3"},
     { name: "Kid Cudi - daynnite", src:"/music/Kid Cudi - Day 'N' Nite .mp3"},
     { name: "Wiz Khalifa -med1cated", src:"/music/Wiz Khalifa - Medicated feat. Chevy Woods & Juicy J [Official Audio].mp3"},
+    { name: "The Notorious B.I.G - P4rty", src:"/music/Biggie Smalls - Party & Bullshit .mp3"},
     { name: "*bonus* cr4sh_bandic00t", src:"/music/Crash Bandicoot OST - Main Menu.mp3"}
 ];
 
